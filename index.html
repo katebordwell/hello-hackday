@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}</style>
+<title>Hello, World of Cats</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Atkinson+Hyperlegible:wght@400;700&family=Bagel+Fat+One&family=VT323&display=swap">
+<style>
+/* Layout: a 90s desktop; every era of internet cat lives in its own little window, in date order. */
+:root{
+  --desk:#2a8c86; --desk-dot:#237770; --win:#ffffff; --chrome:#cbc4ee;
+  --ink:#1d1838; --sun:#ffd23f; --pink:#ff8fb1; --muted:#5a5478;
+  --display:"Bagel Fat One","Arial Black",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,sans-serif;
+  --pixel:"VT323",ui-monospace,Menlo,monospace;
+  --meme:"Anton",Impact,"Arial Narrow Bold",sans-serif;
+  color-scheme:light;
+}
+html{background:var(--desk)}
+body{
+  background:var(--desk);
+  background-image:radial-gradient(var(--desk-dot) 1.5px,transparent 1.6px);
+  background-size:18px 18px;
+  color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:32px 48px;
+}
+.wrap{max-width:1120px;margin:0 auto;display:grid;gap:32px}
+.win{background:var(--win);border:3px solid var(--ink);border-radius:6px;box-shadow:6px 6px 0 var(--ink);overflow:hidden;min-width:0}
+.bar{display:flex;align-items:center;gap:10px;background:var(--chrome);border-bottom:3px solid var(--ink);padding:4px 10px;font-family:var(--pixel);font-size:21px;line-height:1.2}
+.bar .name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.btns{display:flex;gap:5px}
+.btns i{width:14px;height:14px;border:2.5px solid var(--ink);background:var(--win);border-radius:2px}
+.btns i:last-child{background:var(--pink)}
+
+/* hero */
+.hero .inner{display:grid;grid-template-columns:1.4fr 1fr;align-items:center;gap:16px;padding:28px 28px 8px}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(58px,12vw,148px);line-height:.92;margin:0;letter-spacing:-.01em;text-wrap:balance}
+.hero h1 span{background:linear-gradient(transparent 58%,var(--sun) 58%,var(--sun) 88%,transparent 88%)}
+.hero p{max-width:44ch;margin:18px 0 20px;font-size:18px;color:var(--muted)}
+.hero svg{width:100%;max-width:300px;justify-self:center;display:block}
+.prompt{font-family:var(--pixel);font-size:22px;border-top:3px dashed var(--chrome);margin:0 28px;padding:10px 0 16px}
+.blink{animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* era grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:28px}
+.scene{position:relative;cursor:pointer;border:0;padding:0;margin:0;width:100%;display:block;background:var(--bg,#eef4ff);font:inherit;color:inherit}
+.scene:focus-visible{outline:4px solid var(--sun);outline-offset:-4px}
+.scene svg,.scene pre{display:block;width:100%;aspect-ratio:4/3;max-width:100%}
+.scene pre{margin:0;display:grid;place-items:center;font-family:var(--pixel);font-size:clamp(26px,6vw,34px);line-height:1.05;background:#0f2a12;color:#7dff8a;text-align:left}
+.bubble{position:absolute;top:12px;right:12px;background:var(--win);border:3px solid var(--ink);border-radius:14px;padding:4px 12px;font-family:var(--pixel);font-size:22px;box-shadow:3px 3px 0 var(--ink);transform:scale(0);transform-origin:bottom left;transition:transform .18s ease-out;pointer-events:none}
+.scene.talk .bubble{transform:scale(1)}
+.scene.talk svg .cat{animation:wiggle .5s ease-in-out}
+@keyframes wiggle{25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
+.scene svg .cat{transform-box:fill-box;transform-origin:50% 100%}
+.cap{padding:12px 16px 16px;border-top:3px solid var(--ink);display:grid;gap:2px}
+.cap b{font-size:18px}
+.cap span{color:var(--muted);font-size:15px}
+.tip{font-family:var(--pixel);font-size:22px;color:#fff;text-align:center;margin:0}
+footer{font-family:var(--pixel);font-size:20px;color:#e6fffb;text-align:center}
+
+@media (max-width:640px){
+  .hero .inner{grid-template-columns:1fr;padding:20px 18px 4px}
+  .hero svg{max-width:220px}
+  .prompt{margin:0 18px}
+}
+@media (prefers-reduced-motion:reduce){
+  .blink,.scene.talk svg .cat{animation:none}
+  .bubble{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <section class="win hero">
+    <div class="bar"><span class="name">hello_world.exe</span><span class="btns"><i></i><i></i><i></i></span></div>
+    <div class="inner">
+      <div>
+        <h1><span>hello,</span><br><span>world</span></h1>
+        <p>The first thing every program says, as told by thirty years of internet cats. Tap any window to hear from its cat.</p>
+      </div>
+      <svg id="heroCat" viewBox="0 0 240 220" role="img" aria-label="A grey tabby cat sitting and waving"></svg>
+    </div>
+    <div class="prompt">C:\CATS&gt; run hello_world<span class="blink">_</span></div>
+  </section>
+
+  <p class="tip">~ a brief history of cats saying hello ~</p>
+
+  <div class="grid" id="grid"></div>
+
+  <footer>no cats were harmed in the making of this page. several glasses were.</footer>
+</div>
+
+<script>
+const INK='#1d1838',PINK='#ff8fb1';
+const FUR={
+  ginger:{a:'#f29b4b',b:'#c4631f',c:'#ffd9b0',eye:'#8bc34a',stripe:1},
+  grey:{a:'#a3a9b8',b:'#6c7385',c:'#e3e6ee',eye:'#f2c94c',stripe:1},
+  black:{a:'#2b2833',b:'#15131a',c:'#3c3946',eye:'#d6e85a',w:'#cfcbe0'},
+  white:{a:'#f7f6fb',b:'#d4d2e0',c:'#ffffff',eye:'#6fb6ff'},
+  calico:{a:'#f7f1ea',b:'#e2894a',c:'#ffffff',eye:'#7cc46a',stripe:1},
+  tabby:{a:'#b08a62',b:'#7a5a3b',c:'#e9d4b8',eye:'#9ccc65',stripe:1}
+};
+const sw='stroke="'+INK+'" stroke-width="3" stroke-linejoin="round"';
+
+function eyes(f,type){
+  return [-13,13].map(x=>{
+    if(type==='sleepy') return `<path d="M${x-6} -2 Q${x} 4 ${x+6} -2" fill="none" stroke="${f.w&&f.a===FUR.black.a?f.w:INK}" stroke-width="3" stroke-linecap="round"/>`;
+    const big=type==='wide', px=type==='side'?3:0;
+    return `<ellipse cx="${x}" cy="-2" rx="${big?8:6}" ry="${big?9:7}" fill="${f.eye}" stroke="${INK}" stroke-width="2"/>
+      <ellipse cx="${x+px}" cy="-2" rx="${big?5:2.3}" ry="${big?6.5:5.5}" fill="${INK}"/>
+      <circle cx="${x+px+2}" cy="-5" r="${big?2.4:1.6}" fill="#fff"/>`;
+  }).join('');
+}
+function head(x,y,f,o={}){
+  const s=o.s||1, wc=f.w||INK;
+  return `<g transform="translate(${x} ${y}) scale(${s})">
+  <polygon points="-31,-6 -26,-45 -4,-25" fill="${f.a}" ${sw}/>
+  <polygon points="31,-6 26,-45 4,-25" fill="${f.a}" ${sw}/>
+  <polygon points="-24,-14 -23,-35 -11,-24" fill="${PINK}"/>
+  <polygon points="24,-14 23,-35 11,-24" fill="${PINK}"/>
+  <ellipse rx="35" ry="28" fill="${f.a}" ${sw}/>
+  ${f.stripe?`<path d="M-7 -27 L-4 -17 M0 -28 L0 -16 M7 -27 L4 -17" stroke="${f.b}" stroke-width="3.5" stroke-linecap="round"/>`:''}
+  ${eyes(f,o.eyes||'open')}
+  ${o.tongue?`<path d="M-4.5 14 Q-5 27 0 27 Q5 27 4.5 14 Z" fill="${PINK}" stroke="${INK}" stroke-width="2"/>`:''}
+  <path d="M-4 6 L4 6 L0 10.5 Z" fill="${PINK}" stroke="${INK}" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M-7 13 Q-3.5 17.5 0 12 Q3.5 17.5 7 13" fill="none" stroke="${wc}" stroke-width="2" stroke-linecap="round"/>
+  <g stroke="${wc}" stroke-width="1.5" opacity=".65" stroke-linecap="round">
+    <line x1="-15" y1="8" x2="-44" y2="3"/><line x1="-15" y1="12" x2="-43" y2="15"/>
+    <line x1="15" y1="8" x2="44" y2="3"/><line x1="15" y1="12" x2="43" y2="15"/>
+  </g></g>`;
+}
+function sit(x,y,f,o={}){
+  const s=o.s||1;
+  return `<g class="cat"><g transform="translate(${x} ${y}) scale(${s})">
+  <path d="M28 -6 C76 -6 76 -58 48 -66" fill="none" stroke="${INK}" stroke-width="18" stroke-linecap="round"/>
+  <path d="M28 -6 C76 -6 76 -58 48 -66" fill="none" stroke="${f.a}" stroke-width="12" stroke-linecap="round"/>
+  <ellipse cy="-38" rx="38" ry="38" fill="${f.a}" ${sw}/>
+  <ellipse cy="-30" rx="18" ry="24" fill="${f.c}"/>
+  ${o.wave?`<g transform="rotate(-28 30 -50)"><rect x="24" y="-96" width="15" height="46" rx="7.5" fill="${f.a}" ${sw}/></g>`:''}
+  <ellipse cx="-13" cy="-4" rx="12" ry="7" fill="${f.a}" ${sw}/>
+  ${o.wave?'':`<ellipse cx="13" cy="-4" rx="12" ry="7" fill="${f.a}" ${sw}/>`}
+  ${head(0,-84,f,o)}
+  </g></g>`;
+}
+
+const scenes=[
+ {year:'1996',file:'cat.txt',title:'The ASCII cat',note:'Typed by hand in a Usenet signature. Three lines, maximum charm.',say:'&gt; hello, world',ascii:true},
+ {year:'2007',file:'oh_hai.jpg',title:'The caption cat',note:'Big white letters, bold black outline, questionable spelling.',say:'I CAN HAS HELLO?',bg:'#dfe7d2',
+  svg:()=>`${sit(120,182,FUR.grey,{s:.82})}
+  <g font-family="Anton,Impact,sans-serif" font-size="30" fill="#fff" stroke="#000" stroke-width="5" paint-order="stroke" text-anchor="middle" letter-spacing="1">
+  <text x="120" y="38">OH HAI</text><text x="120" y="172">WURLD</text></g>`},
+ {year:'2011',file:'box.gif',title:'The box cat',note:'Any box, any size. If it fits, it sits.',say:'hello from in here',bg:'#fdeedd',
+  svg:()=>`<g class="cat">${head(120,96,FUR.ginger,{s:1})}</g>
+  <polygon points="58,112 34,92 70,100" fill="#e9b273" ${sw}/>
+  <polygon points="182,112 206,92 170,100" fill="#e9b273" ${sw}/>
+  <rect x="58" y="112" width="124" height="62" fill="#d39b5c" ${sw}/>
+  <path d="M100 112 V136 M140 112 V136" stroke="#a8743b" stroke-width="3"/>
+  <ellipse cx="102" cy="113" rx="13" ry="7" fill="${FUR.ginger.a}" ${sw}/>
+  <ellipse cx="138" cy="113" rx="13" ry="7" fill="${FUR.ginger.a}" ${sw}/>
+  <text x="120" y="158" text-anchor="middle" font-family="VT323,monospace" font-size="20" fill="#7b4f22">FRAGILE (CAT)</text>`},
+ {year:'2014',file:'loaf.png',title:'The loaf',note:'Paws tucked, legs gone. A cat in its bread form.',say:'hello, world. i am bread.',bg:'#fff5d6',
+  svg:()=>`<g class="cat"><rect x="44" y="92" width="152" height="72" rx="36" fill="${FUR.white.a}" ${sw}/>
+  <path d="M160 156 Q190 166 200 150" fill="none" stroke="${INK}" stroke-width="3" stroke-linecap="round"/>
+  ${head(112,94,FUR.white,{eyes:'sleepy'})}</g>
+  <text x="196" y="66" font-family="VT323,monospace" font-size="24" fill="${INK}">z</text>
+  <text x="210" y="50" font-family="VT323,monospace" font-size="18" fill="${INK}">z</text>`},
+ {year:'2016',file:'blep.jpg',title:'The blep',note:'Tongue out, fully unaware. Possibly mid-thought.',say:'hewwo, wowld',bg:'#e9e4ff',
+  svg:()=>`<g class="cat">${head(120,104,FUR.black,{s:1.8,eyes:'wide',tongue:true})}</g>`},
+ {year:'2019',file:'tabletop.mp4',title:'The table cat',note:'Maintains eye contact. Pushes your glass anyway.',say:'hello, world. goodbye, glass.',bg:'#e2f4f1',
+  svg:()=>`<rect x="0" y="132" width="168" height="12" fill="#9b6b43" ${sw}/>
+  <rect x="20" y="144" width="12" height="40" fill="#9b6b43" ${sw}/>
+  <g transform="rotate(34 176 132)"><path d="M168 96 L186 96 L183 132 L171 132 Z" fill="#cfeeff" ${sw}/><path d="M170 110 L184 110 L183 131 L171 131 Z" fill="#7cc7ff"/></g>
+  <path d="M206 108 q6 6 0 12 M216 102 q8 10 0 20" fill="none" stroke="${INK}" stroke-width="2.5" stroke-linecap="round"/>
+  <g class="cat"><rect x="110" y="92" width="44" height="14" rx="7" fill="${FUR.calico.a}" ${sw}/>
+  ${sit(88,132,FUR.calico,{s:.7,eyes:'side'})}</g>`},
+ {year:'2023',file:'wfh.zoom',title:'The keyboard cat',note:'Sits on your laptop during the big meeting. Types the message for you.',say:'hello, worlddddddddd',bg:'#ffe4ec',
+  svg:()=>`<rect x="40" y="18" width="160" height="104" rx="8" fill="#3a3550" ${sw}/>
+  <rect x="50" y="28" width="140" height="84" rx="3" fill="#0f2a12"/>
+  <text x="58" y="56" font-family="VT323,monospace" font-size="19" fill="#7dff8a">&gt; hello, worl</text>
+  <text x="58" y="76" font-family="VT323,monospace" font-size="19" fill="#7dff8a">ddddddddddddd</text>
+  <text x="58" y="96" font-family="VT323,monospace" font-size="19" fill="#7dff8a">ddddd;;;;;;jk</text>
+  <path d="M24 122 L216 122 L230 150 L10 150 Z" fill="#b9b4cc" ${sw}/>
+  <g class="cat"><rect x="62" y="118" width="122" height="54" rx="27" fill="${FUR.tabby.a}" ${sw}/>
+  <path d="M90 124 v10 M110 122 v12 M130 122 v12 M150 124 v10" stroke="${FUR.tabby.b}" stroke-width="4" stroke-linecap="round"/>
+  ${head(92,128,FUR.tabby,{s:.82,eyes:'sleepy'})}</g>`}
+];
+
+const ascii=` /\\_/\\
+( o.o )
+ &gt; ^ &lt;
+hello, world`;
+
+document.getElementById('heroCat').innerHTML=sit(110,214,FUR.grey,{wave:true});
+document.getElementById('grid').innerHTML=scenes.map((c,i)=>`
+<article class="win">
+  <div class="bar"><span class="name">${c.year} · ${c.file}</span><span class="btns"><i></i><i></i><i></i></span></div>
+  <button class="scene" id="scene${i}" type="button" style="--bg:${c.bg||'#0f2a12'}" aria-label="${c.title}: tap to hear it say hello">
+    ${c.ascii?`<pre>${ascii}</pre>`:`<svg viewBox="0 0 240 180" aria-hidden="true">${c.svg()}</svg>`}
+    <span class="bubble">${c.say}</span>
+  </button>
+  <div class="cap"><b>${c.title}</b><span>${c.note}</span></div>
+</article>`).join('');
+
+document.querySelectorAll('.scene').forEach(el=>{
+  let t;
+  el.addEventListener('click',()=>{
+    el.classList.remove('talk'); void el.offsetWidth; el.classList.add('talk');
+    clearTimeout(t); t=setTimeout(()=>el.classList.remove('talk'),2200);
+  });
+});
+</script>
+</body>
+</html>
