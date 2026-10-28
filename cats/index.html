@@ -58,6 +58,8 @@ body{
 .scene.talk svg .cat{animation:wiggle .5s ease-in-out}
 @keyframes wiggle{25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
 .scene svg .cat{transform-box:fill-box;transform-origin:50% 100%}
+.voideyes{transform-box:fill-box;transform-origin:50% 50%;animation:voidblink 6s infinite}
+@keyframes voidblink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
 .cap{padding:12px 16px 16px;border-top:3px solid var(--ink);display:grid;gap:2px}
 .cap b{font-size:18px}
 .cap span{color:var(--muted);font-size:15px}
@@ -70,7 +72,7 @@ footer{font-family:var(--pixel);font-size:20px;color:#e6fffb;text-align:center}
   .prompt{margin:0 18px}
 }
 @media (prefers-reduced-motion:reduce){
-  .blink,.scene.talk svg .cat{animation:none}
+  .blink,.scene.talk svg .cat,.voideyes{animation:none}
   .bubble{transition:none}
 }
 </style>
@@ -174,9 +176,27 @@ const scenes=[
   <text x="210" y="50" font-family="VT323,monospace" font-size="18" fill="${INK}">z</text>`},
  {year:'2016',file:'blep.jpg',title:'The blep',note:'Tongue out, fully unaware. Possibly mid-thought.',say:'hewwo, wowld',bg:'#e9e4ff',
   svg:()=>`<g class="cat">${head(120,104,FUR.black,{s:1.8,eyes:'wide',tongue:true})}</g>`},
- {year:'2017',file:'void.jpg',title:'The void',note:'A black cat in a dark room. Two eyes, no edges, infinite mystery.',say:'hello, world. i am the void.',bg:'#0d0c12',
-  svg:()=>`<g fill="#3a3650"><circle cx="30" cy="28" r="1.6"/><circle cx="200" cy="40" r="1.2"/><circle cx="58" cy="132" r="1.2"/><circle cx="214" cy="118" r="1.6"/><circle cx="168" cy="20" r="1"/></g>
-  ${sit(116,178,FUR.black,{s:.86,eyes:'wide'})}`},
+ {year:'2017',file:'void.jpg',title:'The void',note:'A black cat in a dark room. Two eyes, no edges, infinite mystery.',say:'hello, world. i am the void.',bg:'#050408',
+  svg:()=>{const V='#0e0d13';
+  return `<defs>
+    <radialGradient id="voidHalo" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#16141f"/><stop offset="1" stop-color="#050408"/></radialGradient>
+    <filter id="voidGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="240" height="180" fill="url(#voidHalo)"/>
+  <g fill="#2a2638"><circle cx="18" cy="22" r="1"/><circle cx="222" cy="30" r="1.2"/><circle cx="26" cy="150" r="1"/><circle cx="214" cy="140" r="1"/></g>
+  <g class="cat">
+    <path d="M190 182 C236 160 232 104 206 96" fill="none" stroke="${V}" stroke-width="24" stroke-linecap="round"/>
+    <ellipse cx="120" cy="196" rx="98" ry="84" fill="${V}"/>
+    <polygon points="64,74 70,6 106,46" fill="${V}"/>
+    <polygon points="176,74 170,6 134,46" fill="${V}"/>
+    <ellipse cx="120" cy="84" rx="62" ry="50" fill="${V}"/>
+    <g stroke="#1b1924" stroke-width="1.5" stroke-linecap="round"><line x1="92" y1="104" x2="44" y2="98"/><line x1="92" y1="110" x2="46" y2="116"/><line x1="148" y1="104" x2="196" y2="98"/><line x1="148" y1="110" x2="194" y2="116"/></g>
+    <g class="voideyes"><g filter="url(#voidGlow)">
+      <ellipse cx="96" cy="82" rx="13" ry="15" fill="#e6ff5c"/><ellipse cx="144" cy="82" rx="13" ry="15" fill="#e6ff5c"/>
+      <ellipse cx="96" cy="82" rx="4" ry="12" fill="#050408"/><ellipse cx="144" cy="82" rx="4" ry="12" fill="#050408"/>
+    </g>
+    <circle cx="100" cy="76" r="2.4" fill="#fff"/><circle cx="148" cy="76" r="2.4" fill="#fff"/></g>
+  </g>`}},
  {year:'2019',file:'tabletop.mp4',title:'The table cat',note:'Maintains eye contact. Pushes your glass anyway.',say:'hello, world. goodbye, glass.',bg:'#e2f4f1',
   svg:()=>`<rect x="0" y="132" width="168" height="12" fill="#9b6b43" ${sw}/>
   <rect x="20" y="144" width="12" height="40" fill="#9b6b43" ${sw}/>
