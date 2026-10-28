@@ -174,6 +174,9 @@ const scenes=[
   <text x="210" y="50" font-family="VT323,monospace" font-size="18" fill="${INK}">z</text>`},
  {year:'2016',file:'blep.jpg',title:'The blep',note:'Tongue out, fully unaware. Possibly mid-thought.',say:'hewwo, wowld',bg:'#e9e4ff',
   svg:()=>`<g class="cat">${head(120,104,FUR.black,{s:1.8,eyes:'wide',tongue:true})}</g>`},
+ {year:'2017',file:'void.jpg',title:'The void',note:'A black cat in a dark room. Two eyes, no edges, infinite mystery.',say:'hello, world. i am the void.',bg:'#0d0c12',
+  svg:()=>`<g fill="#3a3650"><circle cx="30" cy="28" r="1.6"/><circle cx="200" cy="40" r="1.2"/><circle cx="58" cy="132" r="1.2"/><circle cx="214" cy="118" r="1.6"/><circle cx="168" cy="20" r="1"/></g>
+  ${sit(116,178,FUR.black,{s:.86,eyes:'wide'})}`},
  {year:'2019',file:'tabletop.mp4',title:'The table cat',note:'Maintains eye contact. Pushes your glass anyway.',say:'hello, world. goodbye, glass.',bg:'#e2f4f1',
   svg:()=>`<rect x="0" y="132" width="168" height="12" fill="#9b6b43" ${sw}/>
   <rect x="20" y="144" width="12" height="40" fill="#9b6b43" ${sw}/>
@@ -181,6 +184,25 @@ const scenes=[
   <path d="M206 108 q6 6 0 12 M216 102 q8 10 0 20" fill="none" stroke="${INK}" stroke-width="2.5" stroke-linecap="round"/>
   <g class="cat"><rect x="110" y="92" width="44" height="14" rx="7" fill="${FUR.calico.a}" ${sw}/>
   ${sit(88,132,FUR.calico,{s:.7,eyes:'side'})}</g>`},
+ {year:'2021',file:'dog_raised_by_cats.mov',title:'The dog raised by cats',note:'Grew up with cats. Sits in boxes, ignores you, firmly believes it is a cat.',say:'meow. i mean, hello world.',bg:'#e6f0ff',
+  svg:()=>{const d={a:'#d9a066',b:'#8a5a2b',c:'#f6e2c8',eye:'#7a4b22'};
+  return `<polygon points="34,120 12,100 46,108" fill="#e9b273" ${sw}/>
+  <polygon points="154,120 176,100 142,108" fill="#e9b273" ${sw}/>
+  <g class="cat"><g transform="translate(94 96)">
+    <ellipse cx="-31" cy="2" rx="11" ry="23" transform="rotate(18 -31 2)" fill="${d.b}" ${sw}/>
+    <ellipse cx="31" cy="2" rx="11" ry="23" transform="rotate(-18 31 2)" fill="${d.b}" ${sw}/>
+    <ellipse rx="31" ry="28" fill="${d.a}" ${sw}/>
+    <ellipse cy="14" rx="17" ry="12" fill="${d.c}" ${sw}/>
+    ${eyes(d,'open')}
+    <ellipse cy="8" rx="6.5" ry="4.5" fill="${INK}"/>
+    <path d="M0 12 V17 M-7 17 Q-3.5 21 0 17 Q3.5 21 7 17" fill="none" stroke="${INK}" stroke-width="2" stroke-linecap="round"/>
+  </g></g>
+  <rect x="34" y="120" width="120" height="54" fill="#d39b5c" ${sw}/>
+  <path d="M74 120 V142 M114 120 V142" stroke="#a8743b" stroke-width="3"/>
+  <ellipse cx="78" cy="121" rx="13" ry="7" fill="${d.a}" ${sw}/>
+  <ellipse cx="110" cy="121" rx="13" ry="7" fill="${d.a}" ${sw}/>
+  <text x="94" y="162" text-anchor="middle" font-family="VT323,monospace" font-size="20" fill="#7b4f22">100% CAT</text>
+  ${sit(190,174,FUR.ginger,{s:.5})}`}},
  {year:'2023',file:'wfh.zoom',title:'The keyboard cat',note:'Sits on your laptop during the big meeting. Types the message for you.',say:'hello, worlddddddddd',bg:'#ffe4ec',
   svg:()=>`<rect x="40" y="18" width="160" height="104" rx="8" fill="#3a3550" ${sw}/>
   <rect x="50" y="28" width="140" height="84" rx="3" fill="#0f2a12"/>
